@@ -12,7 +12,6 @@ Jinja2==2.10
 keyring==10.6.0
 keyrings.alt==3.0
 MarkupSafe==1.0
-MAT==0.6.1
 mutagen==1.38
 pdfrw==0.4
 pycairo==1.16.2
