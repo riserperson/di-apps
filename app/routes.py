@@ -7,8 +7,8 @@ from app.forms import AcrolistForm
 from acrolist import searcher
 
 UPLOAD_PATH = '/home/rai/projects/di_apps/uploads/'
-if not os.path.isdir('tmp'):
-    os.mkdir('tmp')
+#if not os.path.isdir('tmp'):
+#    os.mkdir('tmp')
 
 @app.route('/', methods=['GET', 'POST'])
 def acrolist():
