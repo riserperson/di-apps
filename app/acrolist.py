@@ -4,7 +4,10 @@
 import re
 
 def searcher(f):
-    regex = ur"(\b(?:[A-Z]){2,}\s)(\(.*?\))"
+    if use_parens == True:
+        regex = ur"((?:[A-Z][a-z]+\s){2,})\(([A-Z]{2,})"
+    else:
+        regex = ur"([A-Z]{2,})"
 
     acronyms = {
 
