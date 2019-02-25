@@ -3,7 +3,7 @@
 
 import re
 
-def searcher(f):
+def searcher(f, use_parens):
     if use_parens == True:
         regex = ur"((?:[A-Z][a-z]+\s){2,})\(([A-Z]{2,})"
     else:

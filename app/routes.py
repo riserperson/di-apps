@@ -14,7 +14,7 @@ def acrolist():
     form = AcrolistForm()
     if form.doc.data:
         use_parens = form.use_parens.data
-        acronyms = searcher(form.doc.data)        
+        acronyms = searcher(form.doc.data, form.use_parens.data)        
         f = open('isertmp/output.txt','w+')
         for x, y in acronyms.items():
             f.write(str(x) + ' ' + str(y)+'\n')
