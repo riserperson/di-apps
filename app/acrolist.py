@@ -17,5 +17,8 @@ def searcher(f, use_parens):
         matches = re.finditer(regex, input_str, re.MULTILINE)
         for matchNum, match in enumerate(matches, start=1):
             if match.group(1) not in acronyms.keys():
-                acronyms[match.group(1)] = match.group(2)
+                if use_parens == True:
+                    acronyms[match.group(1)] = match.group(2)
+                else:
+                    acronyms[match.group(1)] = match.group(1)
                 return acronyms
