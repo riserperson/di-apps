@@ -13,12 +13,6 @@ def searcher(f, use_parens):
 
     }
     for line in f:
-        input_str = line
-        matches = re.finditer(regex, input_str, re.MULTILINE)
-        for matchNum, match in enumerate(matches, start=1):
-            if match.group(1) not in acronyms.keys():
-                if use_parens == True:
-                    acronyms[match.group(1)] = match.group(2)
-                else:
-                    acronyms[match.group(1)] = match.group(1)
-                return acronyms
+        for m in re.finditer(regex, line):
+            acronyms[m.group(0)] = m.group(0)
+    return acronyms     
