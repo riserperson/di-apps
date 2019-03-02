@@ -14,4 +14,3 @@ def searcher(f, use_parens=False):
         for m in re.finditer(regex, line):
             acronyms[m.group(0)] = m.group(0)
     return acronyms
-

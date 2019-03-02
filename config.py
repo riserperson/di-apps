@@ -7,3 +7,4 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_PATH = basedir + 'isertmp'
+    MY_NEW_VARIABLE = 'hi friends'
