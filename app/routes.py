@@ -6,17 +6,19 @@ from app import app, db
 from app.forms import AcrolistForm
 from acrolist import searcher
 
-if not os.path.exists('isertmp'):
-    os.mkdir('isertmp')
-
 @app.route('/', methods=['GET', 'POST'])
 def acrolist():
+    if not os.path.exists(app.root_path + '/tmp/'):
+        os.mkdir(app.root_path + '/tmp/')
+    if os.path.isfile(app.root_path + '/tmp/output.txt'):
+        os.remove(app.root_path + '/tmp/output.txt')
+
     form = AcrolistForm()
     if form.doc.data:
-        use_parens = form.use_parens.data
-        acronyms = searcher(form.doc.data, form.use_parens.data)        
-        f = open('isertmp/output.txt','w+')
-        for x, y in acronyms.items():
-            f.write(str(x) + ' ' + str(y)+'\n')
-        return send_file(f, attachment_filename='output.txt', as_attachment=True, mimetype='text/plain')
+        acronyms = searcher(form.doc.data, form.use_parens.data)
+        f = open(app.root_path + '/tmp/output.txt','w+x')
+        for x in acronyms.keys():
+            f.write(str(x)+'\n')
+        f.close()
+        return send_file(app.root_path + '/tmp/output.txt', as_attachment=True, attachment_filename='output.txt', mimetype='text/plain')
     return render_template('acrolist.html', form=form)
