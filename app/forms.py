@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 
 class AcrolistForm(FlaskForm):
     doc = FileField(u'Text File')
-    use_parens = BooleanField('Try to grab acronym definitons preceding acronyms enclosed in parentheses (still imperfect).')
+#    use_parens = BooleanField('Try to grab acronym definitons preceding acronyms enclosed in parentheses (still imperfect).')
     submit = SubmitField('Upload')
