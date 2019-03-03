@@ -6,7 +6,11 @@ from app import app, db
 from app.forms import AcrolistForm
 from acrolist import searcher
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/acrolist', methods=['GET', 'POST'])
 def acrolist():
     if not os.path.exists(app.root_path + '/tmp/'):
         os.mkdir(app.root_path + '/tmp/')
@@ -17,7 +21,7 @@ def acrolist():
     if form.doc.data:
         acronyms = searcher(form.doc.data, form.use_parens.data)
         f = open(app.root_path + '/tmp/output.txt','w+x')
-        for x in acronyms.keys():
+        for x in acronyms:
             f.write(str(x)+'\n')
         f.close()
         return send_file(app.root_path + '/tmp/output.txt', as_attachment=True, attachment_filename='output.txt', mimetype='text/plain')
