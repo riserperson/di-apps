@@ -5,6 +5,7 @@ from werkzeug import secure_filename
 from app import app, db
 from app.forms import AcrolistForm
 from acrolist import searcher
+import docx2txt
 
 @app.route('/')
 def index():
@@ -19,7 +20,14 @@ def acrolist():
 
     form = AcrolistForm()
     if form.doc.data:
-        acronyms = searcher(form.doc.data, form.use_parens.data)
+        input_file = open(app.root_path + '/tmp/input.txt','w+x')
+        if form.doc.data.filename[-4:] == 'docx':
+            text = docx2txt.process(form.doc.data)
+        else:
+            text = form.doc.data
+        input_file.write(str(text))
+        input_file.close()
+        acronyms = searcher(input_file)
         f = open(app.root_path + '/tmp/output.txt','w+x')
         for x in acronyms:
             f.write(str(x)+'\n')
