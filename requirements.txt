@@ -1,5 +1,6 @@
 alembic==1.0.7
 Click==7.0
+docx2txt==0.7
 dominate==2.3.5
 Flask==1.0.2
 Flask-Bootstrap==3.3.7.1
